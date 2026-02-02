@@ -1,4 +1,5 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, Body
+from typing import Optional
 from detector import detect_scam
 from responder import generate_reply
 from extractor import extract_intel
@@ -22,7 +23,10 @@ def root():
 # ✅ TEST ENDPOINT (HACKATHON VALIDATION)
 # --------------------------------------------------
 @app.post("/honeypot/test")
-def honeypot_test(api_key: str = Depends(verify_api_key)):
+def honeypot_test(
+    payload: Optional[dict] = Body(None),
+    api_key: str = Depends(verify_api_key)
+):
     return {
         "status": "success",
         "message": "Honeypot endpoint reachable",
@@ -34,6 +38,8 @@ def honeypot_test(api_key: str = Depends(verify_api_key)):
         ],
         "version": "1.0.0"
     }
+
+    
 
 
 # --------------------------------------------------
