@@ -1,2 +1,2 @@
-# scam-honeypot-api
+# Agentic scam-honeypot-api
 Agentic scam detection and intelligence extraction API
